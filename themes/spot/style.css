@@ -57,3 +57,16 @@ color:#0099CC;
     font-size: 25px;
     vertical-align: top;
 }
+.amenities {
+    list-style: outside none none;
+    margin: 20px 0;
+    padding-left: 0;
+}
+.amenities > li {
+    background: #E9BB31 none repeat scroll 0 0;
+    border-radius: 20px;
+    display: inline;
+    font-size: 14px;
+    margin-right: 10px;
+    padding: 10px;
+}

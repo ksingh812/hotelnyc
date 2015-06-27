@@ -42,9 +42,10 @@
         	<div class="col-sm-3 h_img">
         		<?php the_post_thumbnail(); 
         			//echo $hotel_thumbnail;
-        			//if (!empty($hotel_thumbnail)) : $imgurl = $hotel_thumbnail; endif;
-
+        			if (!empty($hotel_thumbnail)) : $imgurl = $hotel_thumbnail; endif;
+					echo '<img src="'.$imgurl.'" style="width:100%; height:auto;""/>';
         		?>
+        		
         	</div>
         	<div class="col-sm-9 h_header">
         		<h1><?php the_title(); ?>
@@ -58,12 +59,15 @@
         			<?php 
         				if(!empty($hotel_address)): echo '<p class="h_address small">'.$hotel_address; endif;
         				if(!empty($city)): echo ', '.$city; endif;
-    					if (!empty($state)): echo ', '.$state; endif;
+    					if (!empty($state_code)): echo ', '.$state_code; endif;
     					if (!empty($postal_code)): echo ' '.$postal_code; endif;
     					if (!empty($country)): echo ', '. $country. '</p>'; endif;
     					if (!empty($review_rating)): echo '<p class="small">Review Rating: <strong>'.$review_rating.'</strong> out of 10. &#09;'; endif;
     					if (!empty($low_rate) && !empty($currency_code)): echo 'Low Rate: <strong>'.$low_rate.' '.$currency_code.'</strong></p>'; endif;
         			?>
+        			<div class"checkavailablity">
+        				<a href="http://tickets.airtkt.net/hotels/hotel/?refid=5436&hotel_id=<?php echo $hotelid_ppn; ?>" target="_blank" class="btn btn-primary">CHECK AVAILBILITY</a>
+        			</div>
         		<?php the_content(); ?>
         		<div class="hote_info">
         		<?php
@@ -89,33 +93,39 @@
 					echo '</ul>';
 					wp_reset_postdata();
         		?>
-				 <script src="https://maps.googleapis.com/maps/api/js"></script>
-				<div id="map_canvas" style="width: 500px;height: 400px;"></div>
-				<script>
-				  var lat = <?php echo json_encode($latitude); ?>;
-				  var lon = <?php echo json_encode($longitude); ?>;
-				   var image = 'images/beachflag.png';
-				    function initialize() {
-					  var myLatlng = new google.maps.LatLng(<?php echo json_encode($latitude); ?>, <?php echo json_encode($longitude); ?>);
-					  var myOptions = {
-						zoom: 8,
-						center: new google.maps.LatLng(44.5403, -78.5463),
-						mapTypeId: google.maps.MapTypeId.ROADMAP,
-						 icon: image
-					  }
-					  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-					}
-
-					function loadScript() {
-					  var script = document.createElement("script");
-					  script.type = "text/javascript";
-					  script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
-					  document.body.appendChild(script);
-					  initialize();
-					}
-
-					window.onload = loadScript;
-				</script>
+        		<div class="googlemap">
+					 <script src="https://maps.googleapis.com/maps/api/js"></script>
+					<div id="map_canvas" style="width: 500px;height: 400px;"></div>
+					<script>
+					   var image = 'images/beachflag.png';
+					    function initialize() {
+						  var myLatlng = new google.maps.LatLng(<?php echo json_encode($latitude, JSON_NUMERIC_CHECK ); ?>, <?php echo json_encode($longitude, JSON_NUMERIC_CHECK ); ?>);
+						  var myOptions = {
+							zoom: 12,
+							center:myLatlng,
+							mapTypeId: google.maps.MapTypeId.ROADMAP,
+							icon: image
+						  }
+						  
+						  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+						  var marker = new google.maps.Marker({
+						    position: myLatlng,
+						    title:"Hello World!"
+						});
+						marker.setMap(map);
+						}
+	
+						function loadScript() {
+						  var script = document.createElement("script");
+						  script.type = "text/javascript";
+						  script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
+						  document.body.appendChild(script);
+						  initialize();
+						}
+	
+						window.onload = loadScript;
+					</script>
+				</div>
         		</div>
         		
         	</div>
