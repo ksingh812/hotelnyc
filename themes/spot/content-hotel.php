@@ -69,9 +69,53 @@
         		<?php
         			//Additional Info about hotel
         			
-        			if(!empty($room_count)): echo 'Total Number of Rooms: '. $room_count; endif;
+        			if(!empty($room_count)): echo '<strong>Total Number of Rooms:</strong> '. $room_count; endif;
         			
+					echo '<h3>Hotel Amenities</h3>';
+					$ams = explode("^", $amenity_codes);
+					//var_dump ($ams);
+					
+					$args = array( 'posts_per_page' => -1,'post_type' => 'amenity' );
+					$myposts = get_posts( $args );
+					echo '<ul class="amenities">';
+					foreach ($myposts as $p)
+					{
+						//echo $p->post_name;
+						if (in_array($p->post_name, $ams))
+						{
+							echo '<li>'.ucfirst($p->post_title).'</li>';
+						}
+					}
+					echo '</ul>';
+					wp_reset_postdata();
         		?>
+				 <script src="https://maps.googleapis.com/maps/api/js"></script>
+				<div id="map_canvas" style="width: 500px;height: 400px;"></div>
+				<script>
+				  var lat = <?php echo json_encode($latitude); ?>;
+				  var lon = <?php echo json_encode($longitude); ?>;
+				   var image = 'images/beachflag.png';
+				    function initialize() {
+					  var myLatlng = new google.maps.LatLng(<?php echo json_encode($latitude); ?>, <?php echo json_encode($longitude); ?>);
+					  var myOptions = {
+						zoom: 8,
+						center: new google.maps.LatLng(44.5403, -78.5463),
+						mapTypeId: google.maps.MapTypeId.ROADMAP,
+						 icon: image
+					  }
+					  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+					}
+
+					function loadScript() {
+					  var script = document.createElement("script");
+					  script.type = "text/javascript";
+					  script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
+					  document.body.appendChild(script);
+					  initialize();
+					}
+
+					window.onload = loadScript;
+				</script>
         		</div>
         		
         	</div>
