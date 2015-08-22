@@ -17,9 +17,23 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script type="text/javascript" src="http://secure.rezserver.com/public/js/searchbox/searchbox.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
 
+<script>
+    $(document).ready(function(){
+	var dateToday = new Date(); 
+	$(function() {
+	    $( ".datepicker" ).datepicker({
+	        numberOfMonths: 1,
+	        showButtonPanel: true,
+	        minDate: dateToday
+	    });
+	});
+   });
+</script>
  
 <script type="text/javascript">
  

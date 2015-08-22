@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-<?php get_template_part( 'content', 'header' ); ?>
+<?php //get_template_part( 'content', 'header' ); ?>
 
 <div class="container">
 <div id="main-grid" class="row">
