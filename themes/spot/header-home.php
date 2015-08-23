@@ -191,7 +191,7 @@
 		// Display the image and text
 		?>
 		<header class="content-header-image">
-			<div class="<?php echo $image_class; ?>" style="background-image: url('<?php echo $image_url; ?>'); height:750px;">
+			<div class="<?php echo $image_class; ?>" style="background-image: url('http://bookhotels.nyc/wp/wp-content/themes/spot/images/headers/hotel-bg.jpg'); height:750px;">
 				<div class="<?php echo $overlay_class; ?>">
 				<!-- SEARCH FORM START -->
 				<div id="template_searchbox">
