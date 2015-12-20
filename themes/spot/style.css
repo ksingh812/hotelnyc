@@ -60,7 +60,10 @@ h1.hotel-title {
 .glyphicon.glyphicon-star {
     color: #ff9226;
     font-size: 25px;
-    vertical-align: top;
+    vertical-align: middle;
+}
+.post-type-archive-hotel .glyphicon.glyphicon-star{
+	font-size: 16px;
 }
 .hote-desc {
   margin-top: 25px;
