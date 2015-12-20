@@ -31,12 +31,16 @@ body {
 
 .navbar-inverse{
 min-height:80px;
+background-color:rgba(0,0,0,0.3);
 }
 .navbar-brand{
 padding:7px 15px;
 }
 .cover-image, .cover-image-overlay{
 pading-top:0px!important;
+}
+.content-header-image{
+	margin-top:-50px;
 }
 .red, .bg-red {background-color: #FF9226;}
 
